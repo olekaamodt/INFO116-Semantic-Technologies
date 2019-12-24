@@ -1,0 +1,136 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX ont: <http://www.semanticweb.org/116assignment#> 
+
+Query:
+
+SELECT ?brand ?instance ?name 
+WHERE {  ?brand rdfs:subClassOf ont:Beer.  
+?instance rdf:type ?brand.  
+?instance ont:fromCountry ont:Denmark.  
+?instance ont:hasName ?name.  
+?instance ont:isGoodWithFood ont:Fish} 
+
+╔════════════════════════════════════════════════════╤════════════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════════════════════╗
+║ brand                                              │ instance                                                       │ name                                                                 ║
+╠════════════════════════════════════════════════════╪════════════════════════════════════════════════════════════════╪══════════════════════════════════════════════════════════════════════╣
+║ http://www.semanticweb.org/116assignment#Carlsberg │ http://www.semanticweb.org/116assignment#CarlsbergNonAlcoholic │ "Carlsberg Non Alcoholic"^^<http://www.w3.org/2001/XMLSchema#string> ║
+╟────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Carlsberg │ http://www.semanticweb.org/116assignment#CarlsbergPilsner      │ "Carlsberg Pilsner"^^<http://www.w3.org/2001/XMLSchema#string>       ║
+╟────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Carlsberg │ http://www.semanticweb.org/116assignment#CarlsbergPremiumBeer  │ Carlsberg Premium Beer"^^<http://www.w3.org/2001/XMLSchema#string>   ║
+╚════════════════════════════════════════════════════╧════════════════════════════════════════════════════════════════╧══════════════════════════════════════════════════════════════════════╝
+
+Query:
+
+SELECT ?brand ?wine ?name ?price 
+WHERE {  ?brand rdfs:subClassOf ont:Wine.  
+?wine rdf:type ?brand.  
+?wine ont:hasWineType ont:Red.  
+?wine ont:hasTasteAndAroma ont:FreshAndFruity.  
+?wine ont:hasName ?name.  
+?wine ont:hasPrice ?price  
+FILTER(?price <300) }
+
+Result:
+
+╔══════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════════════════════════════╤════════════════════════════════════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════╗
+║ brand                                                    │ wine                                                                         │ name                                                                                   │ price                                                ║
+╠══════════════════════════════════════════════════════════╪══════════════════════════════════════════════════════════════════════════════╪════════════════════════════════════════════════════════════════════════════════════════╪══════════════════════════════════════════════════════╣
+║ http://www.semanticweb.org/116assignment#RivaLeone       │ http://www.semanticweb.org/116assignment#RivaLeonePiemonteRosso2016          │ "Riva Leone Piemonte Rosso 2016"^^<http://www.w3.org/2001/XMLSchema#string>            │ "129.90"^^<http://www.w3.org/2001/XMLSchema#decimal> ║
+╟──────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#LaCantinaDelle7 │ http://www.semanticweb.org/116assignment#LaCantinaDelle7DonnePiemonteBarbera │ "La Cantina Delle 7 Donne Piemonte Barbera"^^<http://www.w3.org/2001/XMLSchema#string> │ 124.90"^^<http://www.w3.org/2001/XMLSchema#decimal>  ║
+╚══════════════════════════════════════════════════════════╧══════════════════════════════════════════════════════════════════════════════╧════════════════════════════════════════════════════════════════════════════════════════╧══════════════════════════════════════════════════════╝
+
+Query:
+
+SELECT ?brand ?spirit ?packaging ?Price 
+WHERE { 
+?brand rdfs:subClassOf ont:Liquor.  
+?spirit rdf:type ?brand. 
+ ?spirit ont:hasLiquorType ont:Whisky.  
+?spirit ont:hasPackaging ?packaging.  
+?spirit ont:hasPrice ?Price.  
+FILTER regex( ?packaging, "Glass", "i") } 
+ORDER BY DESC(?Price)
+
+
+Result:
+
+╔══════════════════════════════════════════════════════╤════════════════════════════════════════════════════════════════════════╤════════════════════════════════════════════════════╤══════════════════════════════════════════════════════╗
+║ brand                                                │ spirit                                                                 │ packaging                                          │ price                                                ║
+╠══════════════════════════════════════════════════════╪════════════════════════════════════════════════════════════════════════╪════════════════════════════════════════════════════╪══════════════════════════════════════════════════════╣
+║ http://www.semanticweb.org/116assignment#Jameson     │ http://www.semanticweb.org/116assignment#Jameson_Crested               │ "Glass"^^<http://www.w3.org/2001/XMLSchema#string> │ "439.90"^^<http://www.w3.org/2001/XMLSchema#decimal> ║
+╟──────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────┼──────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Jameson     │ http://www.semanticweb.org/116assignment#Jameson_Caskmates_IPA_Edition │ "Glass"^^<http://www.w3.org/2001/XMLSchema#string> │ "419.90"^^<http://www.w3.org/2001/XMLSchema#decimal> ║
+╟──────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────┼──────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#JackDaniels │ http://www.semanticweb.org/116assignment#JackDanielsTenessee           │ "Glass"^^<http://www.w3.org/2001/XMLSchema#string> │ 399.90"^^<http://www.w3.org/2001/XMLSchema#decimal>  ║
+╚══════════════════════════════════════════════════════╧════════════════════════════════════════════════════════════════════════╧════════════════════════════════════════════════════╧══════════════════════════════════════════════════════╝
+
+Query:
+
+SELECT ?brand ?name ?price ?alchoholic
+WHERE {   
+?brand rdfs:subClassOf ont:Beer.  
+?beer rdf:type ?brand. 
+ ?beer ont:hasName ?name.  
+?beer ont:hasBeerType ont:LightLager. 
+ ?beer ont:hasPrice ?price.  
+?beer ont:hasAlcoholpercentage ?alchoholic   }
+
+Result:
+
+╔════════════════════════════════════════════════════╤═════════════════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════╤═══════════════════════════════════════════════════╗
+║ brand                                              │ name                                                                │ price                                                │ alcoholic                                         ║
+╠════════════════════════════════════════════════════╪═════════════════════════════════════════════════════════════════════╪══════════════════════════════════════════════════════╪═══════════════════════════════════════════════════╣
+║ http://www.semanticweb.org/116assignment#Mack      │ "GullMack"^^<http://www.w3.org/2001/XMLSchema#string>               │ "43.9"^^<http://www.w3.org/2001/XMLSchema#decimal>   │ "6.5"^^<http://www.w3.org/2001/XMLSchema#decimal> ║
+╟────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────┼───────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Carlsberg │ "Carlsberg Pilsner"^^<http://www.w3.org/2001/XMLSchema#string>      │ "399.60"^^<http://www.w3.org/2001/XMLSchema#decimal> │ "5"^^<http://www.w3.org/2001/XMLSchema#integer>   ║
+╟────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────┼───────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Ringnes   │ "Ringnes Extra Gold"^^<http://www.w3.org/2001/XMLSchema#string>     │ "35.90"^^<http://www.w3.org/2001/XMLSchema#decimal>  │ "6.3"^^<http://www.w3.org/2001/XMLSchema#decimal> ║
+╟────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────┼───────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Carlsberg │ "Carlsberg Premium Beer"^^<http://www.w3.org/2001/XMLSchema#string> │ "29.90"^^<http://www.w3.org/2001/XMLSchema#decimal>  │ 5"^^<http://www.w3.org/2001/XMLSchema#integer>    ║
+╚════════════════════════════════════════════════════╧═════════════════════════════════════════════════════════════════════╧══════════════════════════════════════════════════════╧═══════════════════════════════════════════════════╝
+
+Query:
+
+Result:
+
+SELECT ?brand ?instance ?name
+ WHERE { 
+ {  
+?brand rdfs:subClassOf ont:Beer.  
+?instance rdf:type ?brand.  
+?instance ont:hasName ?name.  
+?instance ont:isGoodWithFood ont:Fish 
+}
+ UNION 
+{  
+?brand rdfs:subClassOf ont:Wine.  
+?instance rdf:type ?brand.  
+?instance ont:hasName ?name.  
+?instance ont:isGoodWithFood ont:ShellFish.  
+?instance ont:hasRawmaterial ?Rawmaterial.  
+FILTER regex(?Rawmaterial, "Chardonnay", "i")  
+} 
+} 
+
+╔══════════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════════════════════════════════════╗
+║ brand                                                        │ instance                                                                     │ name                                                                                 ║
+╠══════════════════════════════════════════════════════════════╪══════════════════════════════════════════════════════════════════════════════╪══════════════════════════════════════════════════════════════════════════════════════╣
+║ http://www.semanticweb.org/116assignment#Nøisom              │ http://www.semanticweb.org/116assignment#NøisomBrutIPA                       │ "Nøisom Brut IPA"^^<http://www.w3.org/2001/XMLSchema#string>                         ║
+╟──────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Carlsberg           │ http://www.semanticweb.org/116assignment#CarlsbergPilsner                    │ "Carlsberg Pilsner"^^<http://www.w3.org/2001/XMLSchema#string>                       ║
+╟──────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Carlsberg           │ http://www.semanticweb.org/116assignment#CarlsbergNonAlcoholic               │ "Carlsberg Non Alcoholic"^^<http://www.w3.org/2001/XMLSchema#string>                 ║
+╟──────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Carlsberg           │ http://www.semanticweb.org/116assignment#CarlsbergPremiumBeer                │ "Carlsberg Premium Beer"^^<http://www.w3.org/2001/XMLSchema#string>                  ║
+╟──────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Seguin-Manuel       │ http://www.semanticweb.org/116assignment#SeguinManuelBourgogneChardonnay2015 │ "Seguin-Manuel Bourgogne Chardonnay 2015"^^<http://www.w3.org/2001/XMLSchema#string> ║
+╟──────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#Lefebvre            │ http://www.semanticweb.org/116assignment#LefebvreChampagneCuvéeReserveBrut   │ "Lefebvre Champagne Cuvée Reserve Brut"^^<http://www.w3.org/2001/XMLSchema#string>   ║
+╟──────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────╢
+║ http://www.semanticweb.org/116assignment#DomMarcMoreyeetFlis │ http://www.semanticweb.org/116assignment#DomMarcMoreyetFilsBourgogne2016     │ Dom. Marc Morey et Fils Bourgogne 2016"^^<http://www.w3.org/2001/XMLSchema#string>   ║
+╚══════════════════════════════════════════════════════════════╧══════════════════════════════════════════════════════════════════════════════╧══════════════════════════════════════════════════════════════════════════════════════╝

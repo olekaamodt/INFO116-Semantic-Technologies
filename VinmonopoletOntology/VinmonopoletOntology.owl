@@ -1,0 +1,2470 @@
+@prefix : <http://www.semanticweb.org/116assignment#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/116assignment> .
+
+<http://www.semanticweb.org/116assignment> rdf:type owl:Ontology ;
+                                            rdfs:comment "An ontology of conecepts of Vinmonopolet.no" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/116assignment#name
+:name rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/116assignment#fromCountry
+:fromCountry rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasDescriptor ;
+             rdfs:domain :DrinkableThing ;
+             rdfs:range :Country ;
+             <http://purl.org/dc/elements/1.1/description> "everything that is from a specific country"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#fromDistrict
+:fromDistrict rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasDescriptor ;
+              rdfs:domain :DrinkableThing ;
+              rdfs:range :District ;
+              <http://purl.org/dc/elements/1.1/description> "everything that is from a specific district"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#hasBeerType
+:hasBeerType rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasDescriptor ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Beer
+                                         :Country
+                                       )
+                         ] ;
+             rdfs:range :BeerType ;
+             <http://purl.org/dc/elements/1.1/description> "describes beer types"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#hasBitternessCharacteristic
+:hasBitternessCharacteristic rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf :hasCharacteristic ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( :Beer
+                                                         :Cider
+                                                         :Liquor
+                                                         :Sake
+                                                         :Wine
+                                                       )
+                                         ] ;
+                             rdfs:range :Characteristic ;
+                             rdfs:comment "The bitterness of the product ranging from 1 to 12" .
+
+
+###  http://www.semanticweb.org/116assignment#hasCharacteristic
+:hasCharacteristic rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasDescriptor ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Beer
+                                               :Cider
+                                               :Liquor
+                                               :Sake
+                                               :Wine
+                                             )
+                               ] ;
+                   rdfs:range :Characteristic ;
+                   <http://purl.org/dc/elements/1.1/description> "describes the characteristics of a drink"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#hasDescriptor
+:hasDescriptor rdf:type owl:ObjectProperty ;
+               rdfs:domain owl:Thing ;
+               rdfs:range :DrinkDescriptor ;
+               <http://purl.org/dc/elements/1.1/description> "everything that has a range in a subclass of descriptor"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#hasDistrict
+:hasDistrict rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasDescriptor ;
+             rdfs:domain :Country ;
+             rdfs:range :District .
+
+
+###  http://www.semanticweb.org/116assignment#hasFreshnessCharacteristic
+:hasFreshnessCharacteristic rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :hasCharacteristic ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( :Beer
+                                                        :Cider
+                                                        :Liquor
+                                                        :Sake
+                                                        :Wine
+                                                      )
+                                        ] ;
+                            rdfs:range :Characteristic ;
+                            rdfs:comment "The freshness of the product ranging from 1 to 12" .
+
+
+###  http://www.semanticweb.org/116assignment#hasFullnessCharacteristic
+:hasFullnessCharacteristic rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf :hasCharacteristic ;
+                           rdfs:domain [ rdf:type owl:Class ;
+                                         owl:unionOf ( :Beer
+                                                       :Cider
+                                                       :Liquor
+                                                       :Sake
+                                                       :Wine
+                                                     )
+                                       ] ;
+                           rdfs:range :Characteristic ;
+                           rdfs:comment "The fullness of the product ranging from 1 to 12" .
+
+
+###  http://www.semanticweb.org/116assignment#hasLiquorType
+:hasLiquorType rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasDescriptor ;
+               rdfs:range :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#hasProducer
+:hasProducer rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasDescriptor ;
+             rdfs:domain :DrinkableThing ;
+             rdfs:range :Producer .
+
+
+###  http://www.semanticweb.org/116assignment#hasSugarContent
+:hasSugarContent rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasDescriptor .
+
+
+###  http://www.semanticweb.org/116assignment#hasSweetnessCharacteristic
+:hasSweetnessCharacteristic rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :hasCharacteristic ;
+                            rdfs:range :Characteristic .
+
+
+###  http://www.semanticweb.org/116assignment#hasTanninCharacteristic
+:hasTanninCharacteristic rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :hasCharacteristic ;
+                         rdfs:domain :Wine ;
+                         rdfs:range :Tannin .
+
+
+###  http://www.semanticweb.org/116assignment#hasTasteAndAroma
+:hasTasteAndAroma rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasDescriptor ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :Wine ;
+                  rdfs:range :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#hasWineType
+:hasWineType rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasDescriptor ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Country
+                                         :Wine
+                                       )
+                         ] ;
+             rdfs:range :WineType ;
+             rdfs:comment "This is used to give wined their wine types" .
+
+
+###  http://www.semanticweb.org/116assignment#isGoodWithFood
+:isGoodWithFood rdf:type owl:ObjectProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( :Beer
+                                            :Cider
+                                            :Liquor
+                                            :Sake
+                                            :Wine
+                                          )
+                            ] ;
+                rdfs:range :EdibleThing ;
+                rdfs:comment "Everything that is good with a ptricular food" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/116assignment#Dataproperty
+:Dataproperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/116assignment#hasAcid
+:hasAcid rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :Dataproperty ;
+         rdfs:domain :DrinkableThing ;
+         rdfs:range xsd:decimal ;
+         rdfs:comment "Grams of acid per liter" .
+
+
+###  http://www.semanticweb.org/116assignment#hasAlcoholpercentage
+:hasAlcoholpercentage rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :Dataproperty ;
+                      rdfs:domain :DrinkableThing ;
+                      rdfs:range xsd:decimal ;
+                      rdfs:comment "Percentage of alcohol in the product" .
+
+
+###  http://www.semanticweb.org/116assignment#hasBitterness
+:hasBitterness rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :Dataproperty ;
+               rdfs:domain :DrinkableThing ;
+               rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/116assignment#hasColor
+:hasColor rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :Dataproperty ;
+          rdfs:domain :DrinkableThing ;
+          rdfs:range xsd:string ;
+          rdfs:comment "The color of the product" .
+
+
+###  http://www.semanticweb.org/116assignment#hasFreshness
+:hasFreshness rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :Dataproperty ;
+              rdfs:domain :DrinkableThing ;
+              rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/116assignment#hasFullness
+:hasFullness rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :Dataproperty ;
+             rdfs:domain :DrinkableThing ;
+             rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/116assignment#hasName
+:hasName rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :Dataproperty ;
+         rdfs:domain owl:Thing ;
+         rdfs:range xsd:string ;
+         rdfs:comment "The name of the product" .
+
+
+###  http://www.semanticweb.org/116assignment#hasPackaging
+:hasPackaging rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :Dataproperty ;
+              rdfs:domain :DrinkableThing ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Type of Packaging the product has" .
+
+
+###  http://www.semanticweb.org/116assignment#hasPrice
+:hasPrice rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :Dataproperty ;
+          rdfs:domain :DrinkableThing ;
+          rdfs:range xsd:decimal ;
+          rdfs:comment "The price of the product" .
+
+
+###  http://www.semanticweb.org/116assignment#hasProductnumber
+:hasProductnumber rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :Dataproperty ;
+                  rdfs:domain :DrinkableThing ;
+                  rdfs:range xsd:integer ;
+                  rdfs:comment "The productnumber of the product" .
+
+
+###  http://www.semanticweb.org/116assignment#hasRawmaterial
+:hasRawmaterial rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :Dataproperty ;
+                rdfs:domain :DrinkableThing ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The rawmaterial the product is made of" .
+
+
+###  http://www.semanticweb.org/116assignment#hasSmell
+:hasSmell rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :Dataproperty ;
+          rdfs:domain :DrinkableThing ;
+          rdfs:range xsd:string ;
+          rdfs:comment "The smell of the product" .
+
+
+###  http://www.semanticweb.org/116assignment#hasSugar
+:hasSugar rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :Dataproperty ;
+          rdfs:domain :DrinkableThing ;
+          rdfs:range xsd:decimal ;
+          rdfs:comment "grams of sugar per liter" .
+
+
+###  http://www.semanticweb.org/116assignment#hasSweetness
+:hasSweetness rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :Dataproperty ;
+              rdfs:domain :DrinkableThing ;
+              rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/116assignment#hasTannin
+:hasTannin rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :Dataproperty ;
+           rdfs:domain :Wine ;
+           rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/116assignment#hasTaste
+:hasTaste rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :Dataproperty ;
+          rdfs:domain :DrinkableThing ;
+          rdfs:range xsd:string ;
+          rdfs:comment "The taste of the product" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://webprotege.stanford.edu/Vietti
+<http://webprotege.stanford.edu/Vietti> rdf:type owl:Class ;
+                                        rdfs:subClassOf :Wine ;
+                                        rdfs:label "Vietti" .
+
+
+###  http://www.semanticweb.org/116assignment#Altareggia
+:Altareggia rdf:type owl:Class ;
+            rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#Appertizer
+:Appertizer rdf:type owl:Class ;
+            rdfs:subClassOf :EdibleThing .
+
+
+###  http://www.semanticweb.org/116assignment#Beer
+:Beer rdf:type owl:Class ;
+      rdfs:subClassOf :DrinkableThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :fromCountry ;
+                        owl:someValuesFrom :Country
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isGoodWithFood ;
+                        owl:someValuesFrom :EdibleThing
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :fromCountry ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasBeerType ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasBitternessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFreshnessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFullnessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasSweetnessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] .
+
+
+###  http://www.semanticweb.org/116assignment#BeerType
+:BeerType rdf:type owl:Class ;
+          rdfs:subClassOf :DrinkDescriptor ;
+          rdfs:comment "all beer types" .
+
+
+###  http://www.semanticweb.org/116assignment#Bitterness
+:Bitterness rdf:type owl:Class ;
+            rdfs:subClassOf :Characteristic .
+
+
+###  http://www.semanticweb.org/116assignment#BreadandButter
+:BreadandButter rdf:type owl:Class ;
+                rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#Carlsberg
+:Carlsberg rdf:type owl:Class ;
+           owl:equivalentClass [ owl:intersectionOf ( :Beer
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :hasProducer ;
+                                                        owl:hasValue :CarlsbergBreweries
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
+                               ] ;
+           rdfs:subClassOf :Beer .
+
+
+###  http://www.semanticweb.org/116assignment#Characteristic
+:Characteristic rdf:type owl:Class ;
+                rdfs:subClassOf :DrinkDescriptor ;
+                rdfs:comment "Different kinds of characteristics" .
+
+
+###  http://www.semanticweb.org/116assignment#Cider
+:Cider rdf:type owl:Class ;
+       rdfs:subClassOf :DrinkableThing ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :isGoodWithFood ;
+                         owl:someValuesFrom :EdibleThing
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :fromCountry ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasBitternessCharacteristic ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasFreshnessCharacteristic ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasFullnessCharacteristic ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasProducer ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasSugarContent ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasSweetnessCharacteristic ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] .
+
+
+###  http://www.semanticweb.org/116assignment#ClosduJaugeuyron
+:ClosduJaugeuyron rdf:type owl:Class ;
+                  rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#ConsumeableThing
+:ConsumeableThing rdf:type owl:Class ;
+                  rdfs:comment "This class contains verything in the ontology that can be consumed." .
+
+
+###  http://www.semanticweb.org/116assignment#Country
+:Country rdf:type owl:Class ;
+         rdfs:subClassOf :DrinkDescriptor ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasDistrict ;
+                           owl:someValuesFrom :District
+                         ] ;
+         rdfs:comment "All the Countries" .
+
+
+###  http://www.semanticweb.org/116assignment#District
+:District rdf:type owl:Class ;
+          rdfs:subClassOf :DrinkDescriptor ;
+          rdfs:comment "All the districts" .
+
+
+###  http://www.semanticweb.org/116assignment#Docs
+:Docs rdf:type owl:Class ;
+      rdfs:subClassOf :Cider .
+
+
+###  http://www.semanticweb.org/116assignment#DomMarcMoreyeetFlis
+:DomMarcMoreyeetFlis rdf:type owl:Class ;
+                     rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#DrinkDescriptor
+:DrinkDescriptor rdf:type owl:Class ;
+                 rdfs:comment "This class contains everything that describes a drink" .
+
+
+###  http://www.semanticweb.org/116assignment#DrinkableThing
+:DrinkableThing rdf:type owl:Class ;
+                rdfs:subClassOf :ConsumeableThing ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :fromDistrict ;
+                                  owl:someValuesFrom :District
+                                ] ;
+                rdfs:comment "All the different kind of drinks that exists in the ontology" .
+
+
+###  http://www.semanticweb.org/116assignment#EdibleThing
+:EdibleThing rdf:type owl:Class ;
+             rdfs:subClassOf :ConsumeableThing ;
+             rdfs:comment "Everything that is edible" .
+
+
+###  http://www.semanticweb.org/116assignment#Fowl
+:Fowl rdf:type owl:Class ;
+      rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/116assignment#Freshness
+:Freshness rdf:type owl:Class ;
+           rdfs:subClassOf :Characteristic .
+
+
+###  http://www.semanticweb.org/116assignment#Fullness
+:Fullness rdf:type owl:Class ;
+          rdfs:subClassOf :Characteristic .
+
+
+###  http://www.semanticweb.org/116assignment#GammelDansk
+:GammelDansk rdf:type owl:Class ;
+             rdfs:subClassOf :Liquor .
+
+
+###  http://www.semanticweb.org/116assignment#HardangerCider
+:HardangerCider rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Cider
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasProducer ;
+                                                             owl:hasValue :HardangerSaftogCiderFabrikk
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Cider .
+
+
+###  http://www.semanticweb.org/116assignment#Hennesy
+:Hennesy rdf:type owl:Class ;
+         rdfs:subClassOf :Liquor .
+
+
+###  http://www.semanticweb.org/116assignment#JackDaniels
+:JackDaniels rdf:type owl:Class ;
+             rdfs:subClassOf :Liquor .
+
+
+###  http://www.semanticweb.org/116assignment#Jameson
+:Jameson rdf:type owl:Class ;
+         rdfs:subClassOf :Liquor .
+
+
+###  http://www.semanticweb.org/116assignment#KirowTikTak
+:KirowTikTak rdf:type owl:Class ;
+             rdfs:subClassOf :Liquor .
+
+
+###  http://www.semanticweb.org/116assignment#LaCantinaDelle7
+:LaCantinaDelle7 rdf:type owl:Class ;
+                 rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#LaSirenedeGiscours
+:LaSirenedeGiscours rdf:type owl:Class ;
+                    rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#LaTrappe
+:LaTrappe rdf:type owl:Class ;
+          rdfs:subClassOf :Beer .
+
+
+###  http://www.semanticweb.org/116assignment#Lefebvre
+:Lefebvre rdf:type owl:Class ;
+          rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#Liquor
+:Liquor rdf:type owl:Class ;
+        rdfs:subClassOf :DrinkableThing ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :isGoodWithFood ;
+                          owl:someValuesFrom :EdibleThing
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :fromCountry ;
+                          owl:cardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasProducer ;
+                          owl:cardinality "1"^^xsd:nonNegativeInteger
+                        ] .
+
+
+###  http://www.semanticweb.org/116assignment#LiquorType
+:LiquorType rdf:type owl:Class ;
+            rdfs:subClassOf :DrinkDescriptor ;
+            rdfs:comment "All Liquor types" .
+
+
+###  http://www.semanticweb.org/116assignment#Mack
+:Mack rdf:type owl:Class ;
+      rdfs:subClassOf :Beer .
+
+
+###  http://www.semanticweb.org/116assignment#MahrsBrau
+:MahrsBrau rdf:type owl:Class ;
+           rdfs:subClassOf :Beer .
+
+
+###  http://www.semanticweb.org/116assignment#Meat
+:Meat rdf:type owl:Class ;
+      rdfs:subClassOf :EdibleThing .
+
+
+###  http://www.semanticweb.org/116assignment#Mutemuka
+:Mutemuka rdf:type owl:Class ;
+          rdfs:subClassOf :Sake .
+
+
+###  http://www.semanticweb.org/116assignment#NonReadMeat
+:NonReadMeat rdf:type owl:Class ;
+             rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/116assignment#Nøisom
+:Nøisom rdf:type owl:Class ;
+        owl:equivalentClass [ owl:intersectionOf ( :Beer
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :hasProducer ;
+                                                     owl:hasValue :Nøisom
+                                                   ]
+                                                 ) ;
+                              rdf:type owl:Class
+                            ] ;
+        rdfs:subClassOf :Beer .
+
+
+###  http://www.semanticweb.org/116assignment#Poppels
+:Poppels rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( :Beer
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :hasProducer ;
+                                                      owl:hasValue :PoppelsBryggeri
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
+         rdfs:subClassOf :Beer .
+
+
+###  http://www.semanticweb.org/116assignment#Producer
+:Producer rdf:type owl:Class ;
+          rdfs:subClassOf :DrinkDescriptor ;
+          rdfs:comment "All producers" .
+
+
+###  http://www.semanticweb.org/116assignment#RedMeat
+:RedMeat rdf:type owl:Class ;
+         rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/116assignment#Ringnes
+:Ringnes rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( :Beer
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :hasProducer ;
+                                                      owl:hasValue :Ringnes
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
+         rdfs:subClassOf :Beer .
+
+
+###  http://www.semanticweb.org/116assignment#Rioja
+:Rioja rdf:type owl:Class ;
+       rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#RivaLeone
+:RivaLeone rdf:type owl:Class ;
+           rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#Sake
+:Sake rdf:type owl:Class ;
+      rdfs:subClassOf :DrinkableThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isGoodWithFood ;
+                        owl:someValuesFrom :EdibleThing
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :fromCountry ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasBitternessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFullnessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasProducer ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] .
+
+
+###  http://www.semanticweb.org/116assignment#Seafood
+:Seafood rdf:type owl:Class ;
+         rdfs:subClassOf :EdibleThing .
+
+
+###  http://www.semanticweb.org/116assignment#Seguin-Manuel
+:Seguin-Manuel rdf:type owl:Class ;
+               rdfs:subClassOf :Wine .
+
+
+###  http://www.semanticweb.org/116assignment#ShoChikuBai
+:ShoChikuBai rdf:type owl:Class ;
+             rdfs:subClassOf :Sake .
+
+
+###  http://www.semanticweb.org/116assignment#StrongBow
+:StrongBow rdf:type owl:Class ;
+           rdfs:subClassOf :Cider .
+
+
+###  http://www.semanticweb.org/116assignment#Sweetness
+:Sweetness rdf:type owl:Class ;
+           rdfs:subClassOf :Characteristic ;
+           rdfs:comment "The sweetness of the product ranging from 1 to 12" .
+
+
+###  http://www.semanticweb.org/116assignment#Tannin
+:Tannin rdf:type owl:Class ;
+        rdfs:subClassOf :Characteristic ;
+        rdfs:comment "The tanning content of the product in grams" .
+
+
+###  http://www.semanticweb.org/116assignment#TeradaHonke
+:TeradaHonke rdf:type owl:Class ;
+             rdfs:subClassOf :Sake .
+
+
+###  http://www.semanticweb.org/116assignment#Ulvik
+:Ulvik rdf:type owl:Class ;
+       rdfs:subClassOf :Cider .
+
+
+###  http://www.semanticweb.org/116assignment#Vegetable
+:Vegetable rdf:type owl:Class ;
+           rdfs:subClassOf :EdibleThing .
+
+
+###  http://www.semanticweb.org/116assignment#VikingFjord
+:VikingFjord rdf:type owl:Class ;
+             rdfs:subClassOf :Liquor .
+
+
+###  http://www.semanticweb.org/116assignment#Wine
+:Wine rdf:type owl:Class ;
+      rdfs:subClassOf :DrinkableThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isGoodWithFood ;
+                        owl:someValuesFrom :EdibleThing
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasBitternessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFreshnessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFullnessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasProducer ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasSugarContent ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasSweetnessCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasTanninCharacteristic ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasWineType ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] .
+
+
+###  http://www.semanticweb.org/116assignment#WineTasteAndAroma
+:WineTasteAndAroma rdf:type owl:Class ;
+                   rdfs:subClassOf :DrinkDescriptor ;
+                   rdfs:comment "Different kinds og tastes and aromas" .
+
+
+###  http://www.semanticweb.org/116assignment#WineType
+:WineType rdf:type owl:Class ;
+          rdfs:subClassOf :DrinkDescriptor ;
+          rdfs:comment "All wine types" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://webprotege.stanford.edu/Gullmack
+<http://webprotege.stanford.edu/Gullmack> rdf:type owl:NamedIndividual ,
+                                                   :Mack ;
+                                          :fromCountry :Norway ;
+                                          :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Troms> ;
+                                          :hasBeerType :LightLager ;
+                                          :hasProducer <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#MacksØlbryggeri> ;
+                                          :isGoodWithFood :Beef ,
+                                                          :LightMeat ,
+                                                          :Pork ;
+                                          :hasAlcoholpercentage 6.5 ;
+                                          :hasBitterness 5 ;
+                                          :hasColor "Middels Dyp Gyllenbrun"^^xsd:string ;
+                                          :hasFreshness 5 ;
+                                          :hasFullness 7 ;
+                                          :hasName "GullMack"^^xsd:string ;
+                                          :hasPackaging "Emballasje med pant, Miljøsmart"^^xsd:string ;
+                                          :hasPrice 43.9 ;
+                                          :hasSmell "Aroma preget av lyst malt, litt ristet korn, urter og sitrus."^^xsd:string ;
+                                          :hasTaste "Ung og kremet. Preg av lyst malt, ristet korn og urter. Ettersmak med god lengde."^^xsd:string ;
+                                          rdfs:label "GullMack"^^xsd:string .
+
+
+###  http://webprotege.stanford.edu/HelgeWiig
+<http://webprotege.stanford.edu/HelgeWiig> rdf:type owl:NamedIndividual ,
+                                                    :Producer ;
+                                           :hasName "Helge Wiig"^^xsd:string ;
+                                           rdfs:label "HelgeWiig" .
+
+
+###  http://webprotege.stanford.edu/KirowTiktak
+<http://webprotege.stanford.edu/KirowTiktak> rdf:type owl:NamedIndividual ,
+                                                      :KirowTikTak ;
+                                             :fromCountry :Norway ;
+                                             :hasProducer <http://webprotege.stanford.edu/HelgeWiig> ;
+                                             :hasAlcoholpercentage 20 ;
+                                             :hasColor "Vannklar"^^xsd:string ;
+                                             :hasName "Kirow Tiktak"^^xsd:string ;
+                                             :hasPackaging "Plast"^^xsd:string ;
+                                             :hasPrice 139.90 ;
+                                             :hasProductnumber 1558002 ;
+                                             :hasRawmaterial "Kornbrennevin"^^xsd:string ;
+                                             :hasSmell "Nøytral aroma med antydning til krydder."^^xsd:string ;
+                                             :hasTaste "Lett og nøytralt brennevin med hint av krydder."^^xsd:string ;
+                                             rdfs:label "KirowTiktak" .
+
+
+###  http://webprotege.stanford.edu/MackMikrobryggeriSexIPA
+<http://webprotege.stanford.edu/MackMikrobryggeriSexIPA> rdf:type owl:NamedIndividual ,
+                                                                  :Mack ;
+                                                         :fromCountry :Norway ;
+                                                         :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Troms> ;
+                                                         :hasBeerType :IndiaPaleAle ;
+                                                         :hasProducer <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#MacksØlbryggeri> ;
+                                                         :isGoodWithFood :aperitif ;
+                                                         :hasAlcoholpercentage 6.9 ;
+                                                         :hasBitterness 8 ;
+                                                         :hasColor "Uklar oransje"^^xsd:string ;
+                                                         :hasFreshness 11 ;
+                                                         :hasFullness 5 ;
+                                                         :hasName "Mack Mikrobryggeri Sex IPA"^^xsd:string ;
+                                                         :hasPackaging "Glass"^^xsd:string ;
+                                                         :hasPrice 59.9 ;
+                                                         :hasProductnumber 8143302 ;
+                                                         :hasRawmaterial "Vann, malt, havre, humle, gjær"^^xsd:string ;
+                                                         :hasSmell "Kraftig humlearoma, blomster, sitrus og frukt."^^xsd:string ;
+                                                         :hasTaste "Kompleks humlepreg, fruktig og frisk."^^xsd:string ;
+                                                         rdfs:label "Mack Mikrobryggeri Sex IPA"^^xsd:string .
+
+
+###  http://webprotege.stanford.edu/RBSxSNiPU5Wglo6q70ysBDK
+<http://webprotege.stanford.edu/RBSxSNiPU5Wglo6q70ysBDK> rdf:type owl:NamedIndividual ,
+                                                                  :BreadandButter ;
+                                                         :fromCountry :USA ;
+                                                         :fromDistrict :California ;
+                                                         :hasProducer :BreadAndButter ;
+                                                         :hasWineType :Red ;
+                                                         :isGoodWithFood :Beef ,
+                                                                         :LightMeat ,
+                                                                         :SmallGameMeat ;
+                                                         :hasAcid 4.7 ;
+                                                         :hasAlcoholpercentage 13 ;
+                                                         :hasColor "Lys rød"^^xsd:string ;
+                                                         :hasFreshness 6 ;
+                                                         :hasFullness 6 ;
+                                                         :hasName "Bread & Butter Pinot Noir"^^xsd:string ;
+                                                         :hasPackaging "Glass"^^xsd:string ;
+                                                         :hasPrice 199.90 ;
+                                                         :hasProductnumber 11018401 ;
+                                                         :hasRawmaterial "Pinot Noir 100%"^^xsd:string ;
+                                                         :hasSmell "Frisk frukt og kirsebær."^^xsd:string ;
+                                                         :hasSugar 3.7 ;
+                                                         :hasTannin 4 ;
+                                                         :hasTaste "Fruktdrevet, med hint av fat."^^xsd:string ;
+                                                         rdfs:label "Bread&ButterPinotNoir" .
+
+
+###  http://webprotege.stanford.edu/ViettiPerbaccoLangheNebbiolo2016
+<http://webprotege.stanford.edu/ViettiPerbaccoLangheNebbiolo2016> rdf:type owl:NamedIndividual ,
+                                                                           <http://webprotege.stanford.edu/Vietti> ;
+                                                                  :fromCountry :Italy ;
+                                                                  :fromDistrict :Piemonte ;
+                                                                  :hasTasteAndAroma :FirmAndFruity ;
+                                                                  :hasWineType :Red ;
+                                                                  :isGoodWithFood :Beef ,
+                                                                                  :Cheese ;
+                                                                  :hasAcid 5.2 ;
+                                                                  :hasAlcoholpercentage 14 ;
+                                                                  :hasColor "Mørk rubinrød."^^xsd:string ;
+                                                                  :hasFreshness 7 ;
+                                                                  :hasFullness 8 ;
+                                                                  :hasName "Vietti Perbacco Langhe Nebbiolo 2016"^^xsd:string ;
+                                                                  :hasPackaging "Glass"^^xsd:string ;
+                                                                  :hasPrice 269.90 ;
+                                                                  :hasProductnumber 288201 ;
+                                                                  :hasRawmaterial "Nebbiolo 100%"^^xsd:string ;
+                                                                  :hasSmell "Fukt med hint av mentol og krydder."^^xsd:string ;
+                                                                  :hasSugar 3 ;
+                                                                  :hasTaste "Intens, bær, runde balanserte tanniner."^^xsd:string ;
+                                                                  rdfs:label "ViettiPerbaccoLangheNebbiolo2016" .
+
+
+###  http://www.semanticweb.org/116assignment#Altadonna
+:Altadonna rdf:type owl:NamedIndividual ,
+                    :Producer ;
+           :hasName "Altadonna"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#AltareggiaTrevisoProseccoBrut
+:AltareggiaTrevisoProseccoBrut rdf:type owl:NamedIndividual ,
+                                        :Altareggia ;
+                               :fromCountry :Italy ;
+                               :fromDistrict :Prosecco ;
+                               :hasFreshnessCharacteristic :GoodFreshness ;
+                               :hasFullnessCharacteristic :Light ;
+                               :hasProducer :Altadonna ;
+                               :hasSweetnessCharacteristic :Dry ;
+                               :hasWineType :Sparkling ;
+                               :isGoodWithFood :ShellFish ,
+                                               :aperitif ;
+                               :hasAcid 5.4 ;
+                               :hasAlcoholpercentage 11 ;
+                               :hasColor "Lys gulgrønn."^^xsd:string ;
+                               :hasFreshness 8 ;
+                               :hasFullness 5 ;
+                               :hasName "Altareggia Treviso Prosecco Brut"^^xsd:string ;
+                               :hasPackaging "Glass"^^xsd:string ;
+                               :hasPrice 299.90 ;
+                               :hasProductnumber 611705 ;
+                               :hasRawmaterial "Glera 100%"^^xsd:string ;
+                               :hasSmell "Litt dropsaktig aroma med innslag av pære, sitrus og urter."^^xsd:string ;
+                               :hasSugar 11 ;
+                               :hasSweetness 3 ;
+                               :hasTaste "Ren og umiddelbar, preg av pære og litt urter."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Arcus
+:Arcus rdf:type owl:NamedIndividual ,
+                :Producer ;
+       :hasName "Arcus"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#BarleyWine
+:BarleyWine rdf:type owl:NamedIndividual ,
+                     :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Beef
+:Beef rdf:type owl:NamedIndividual ,
+               :RedMeat ;
+      :hasName "Storfe"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Belgium
+:Belgium rdf:type owl:NamedIndividual ,
+                  :Country ;
+         :hasName "Belgia"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Bitter
+:Bitter rdf:type owl:NamedIndividual ,
+                 :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#BoldAndFloral
+:BoldAndFloral rdf:type owl:NamedIndividual ,
+                        :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#Bordeaux
+:Bordeaux rdf:type owl:NamedIndividual ,
+                   :District ;
+          :hasName "Bordeaux"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Bourgogne
+:Bourgogne rdf:type owl:NamedIndividual ,
+                    :District ;
+           :hasName "Bourgogne"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#BreadAndButter
+:BreadAndButter rdf:type owl:NamedIndividual ,
+                         :Producer ;
+                :hasName "Bread and Butter"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#BreadAndButterRose
+:BreadAndButterRose rdf:type owl:NamedIndividual ,
+                             :BreadandButter ;
+                    :fromCountry :USA ;
+                    :fromDistrict :California ;
+                    :hasFreshnessCharacteristic :GoodFreshness ;
+                    :hasFullnessCharacteristic :Light ;
+                    :hasProducer :BreadAndButter ;
+                    :hasSweetnessCharacteristic :Dry ;
+                    :hasWineType :Rose ;
+                    :isGoodWithFood :Fish ,
+                                    :LightMeat ,
+                                    :Vegetables ;
+                    :hasAcid 5.2 ;
+                    :hasAlcoholpercentage 12.5 ;
+                    :hasColor "Lyserosa."^^xsd:string ;
+                    :hasFreshness 7 ;
+                    :hasFullness 4 ;
+                    :hasName "Bread and Butter Rosé"^^xsd:string ;
+                    :hasPackaging "Glass"^^xsd:string ;
+                    :hasPrice 199.90 ;
+                    :hasProductnumber 11018301 ;
+                    :hasRawmaterial "Pinot Noir 100%"^^xsd:string ;
+                    :hasSmell "Markjordbær, melonpreg og roser."^^xsd:string ;
+                    :hasSugar 5.2 ;
+                    :hasSweetness 2 ;
+                    :hasTaste "Balansert syre, med frisk og mild avslutning."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Brown-Forman
+:Brown-Forman rdf:type owl:NamedIndividual ,
+                       :Producer ;
+              :hasName "Brown-Forman"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#BrownAle
+:BrownAle rdf:type owl:NamedIndividual ,
+                   :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#California
+:California rdf:type owl:NamedIndividual ,
+                     :District ;
+            :hasName "California"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#CarlsbergBreweries
+:CarlsbergBreweries rdf:type owl:NamedIndividual ,
+                             :Producer ;
+                    :hasName "Carlsberg Breweries"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#CarlsbergNonAlcoholic
+:CarlsbergNonAlcoholic rdf:type owl:NamedIndividual ,
+                                :Carlsberg ;
+                       :fromCountry :Denmark ;
+                       :hasBeerType :NonAlcoholic ;
+                       :hasBitternessCharacteristic :LittleBitterness ;
+                       :hasFreshnessCharacteristic :LowFreshness ;
+                       :hasFullnessCharacteristic :Light ;
+                       :hasProducer :CarlsbergBreweries ;
+                       :isGoodWithFood :Fish ,
+                                       :LightMeat ,
+                                       :Pork ;
+                       :hasAlcoholpercentage 0.5 ;
+                       :hasBitterness 5 ;
+                       :hasColor "Middels dyp gyllenbrun."^^xsd:string ;
+                       :hasFreshness 5 ;
+                       :hasFullness 4 ;
+                       :hasName "Carlsberg Non Alcoholic"^^xsd:string ;
+                       :hasPackaging "Glass"^^xsd:string ;
+                       :hasProductnumber 6812302 ;
+                       :hasSmell "Aroma med fint preg av ferskt lyst malt og sitrus, innslag av urter og blomst."^^xsd:string ;
+                       :hasSugar 12 ;
+                       :hasTaste "Ung, fruktig og kremet, preg av lyst malt og korn, innslag av sitrus og urter."^^xsd:string ;
+                       :name "Carlsberg Non Alcoholic"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#CarlsbergPilsner
+:CarlsbergPilsner rdf:type owl:NamedIndividual ,
+                           :Carlsberg ;
+                  :fromCountry :Denmark ;
+                  :hasBeerType :LightLager ;
+                  :hasBitternessCharacteristic :MediumBitterness ;
+                  :hasFreshnessCharacteristic :MediumFreshness ;
+                  :hasFullnessCharacteristic :Light ;
+                  :hasProducer :CarlsbergBreweries ;
+                  :isGoodWithFood :Fish ,
+                                  :LightMeat ,
+                                  :ShellFish ;
+                  :hasAlcoholpercentage 5 ;
+                  :hasColor "Middels dyp gyllengul."^^xsd:string ;
+                  :hasFreshness 7 ;
+                  :hasFullness 5 ,
+                               7 ;
+                  :hasName "Carlsberg Pilsner"^^xsd:string ;
+                  :hasPackaging "Glass"^^xsd:string ;
+                  :hasPrice 399.60 ;
+                  :hasProductnumber 10872407 ;
+                  :hasRawmaterial "Vann, malt, humle, gjær"^^xsd:string ;
+                  :hasSmell "Preg av lyst malt, streif av eple, urter og sitrus."^^xsd:string ;
+                  :hasTaste "Ren, kremet og ørlite utviklet. Preg av lyst malt, sitrus og humle."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#CarlsbergPremiumBeer
+:CarlsbergPremiumBeer rdf:type owl:NamedIndividual ,
+                               :Carlsberg ;
+                      :fromCountry :Denmark ;
+                      :hasBeerType :LightLager ;
+                      :hasBitternessCharacteristic :GoodBitterness ;
+                      :hasFreshnessCharacteristic :GoodFreshness ;
+                      :hasFullnessCharacteristic :MediumFullness ;
+                      :hasProducer :CarlsbergBreweries ;
+                      :isGoodWithFood :Fish ,
+                                      :LightMeat ,
+                                      :ShellFish ;
+                      :hasAlcoholpercentage 5 ;
+                      :hasBitterness 7 ;
+                      :hasColor "Middels dyp gyllengul."^^xsd:string ;
+                      :hasFreshness 7 ;
+                      :hasFullness 6 ;
+                      :hasName "Carlsberg Premium Beer"^^xsd:string ;
+                      :hasPrice 29.90 ;
+                      :hasProductnumber 3868702 ;
+                      :hasRawmaterial "Vann, malt, humle, gjær"^^xsd:string ;
+                      :hasTaste "Ren, kremet og ørlite utviklet. Preg av lyst malt, sitrus og humle."^^xsd:string ;
+                      :name "Carlsberg Premium Beer"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#ChGiscours
+:ChGiscours rdf:type owl:NamedIndividual ,
+                     :Producer ;
+            :hasName "Ch Giscours"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Champagne
+:Champagne rdf:type owl:NamedIndividual ,
+                    :District ;
+           :hasName "Champagne"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#ChampagneLefebre
+:ChampagneLefebre rdf:type owl:NamedIndividual ,
+                           :Producer ;
+                  :hasName "Champagne Lefebre"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Cheese
+:Cheese rdf:type owl:NamedIndividual ,
+                 :Appertizer ;
+        :hasName "Ost"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#ClosduJagueyron
+:ClosduJagueyron rdf:type owl:NamedIndividual ,
+                          :Producer ;
+                 :hasName "Clos du Jagueyron"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#ClosduJaugeuyronMargaux2014
+:ClosduJaugeuyronMargaux2014 rdf:type owl:NamedIndividual ,
+                                      :ClosduJaugeuyron ;
+                             :fromCountry :France ;
+                             :hasProducer :ClosduJagueyron ;
+                             :hasTasteAndAroma :FirmAndFruity ;
+                             :hasWineType :Red ;
+                             :isGoodWithFood :Beef ,
+                                             :Mutton ,
+                                             :WildGameMeat ;
+                             :hasColor "Mørk og tett."^^xsd:string ;
+                             :hasFreshness 8 ;
+                             :hasFullness 9 ;
+                             :hasName "Clos du Jaugeuyron Margaux 2014"^^xsd:string ;
+                             :hasPackaging "Glass"^^xsd:string ;
+                             :hasPrice 709.90 ;
+                             :hasProductnumber 1290701 ;
+                             :hasRawmaterial "Cabernet Sauvignon 70%, Cabernet Franc 5%, Merlot 25%"^^xsd:string ;
+                             :hasSmell "Kompleks duft av mørke og røde bær, trøffel og sedertre."^^xsd:string ;
+                             :hasTannin 9 ;
+                             :hasTaste "Konsentrert og frisk munnfølelse, rik og kompleks. Lang avslutning."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Cognac
+:Cognac rdf:type owl:NamedIndividual ,
+                 :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#DarkLager
+:DarkLager rdf:type owl:NamedIndividual ,
+                    :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Denmark
+:Denmark rdf:type owl:NamedIndividual ,
+                  :Country ;
+         :hasName "Danmark"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Dessert
+:Dessert rdf:type owl:NamedIndividual ,
+                  :EdibleThing .
+
+
+###  http://www.semanticweb.org/116assignment#DevelopedAndNuanced
+:DevelopedAndNuanced rdf:type owl:NamedIndividual ,
+                              :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#DocsRaspberryHardAppleCider
+:DocsRaspberryHardAppleCider rdf:type owl:NamedIndividual ,
+                                      :Docs ;
+                             :fromCountry :USA ;
+                             :hasProducer :WarwickValleyWineCoInc ;
+                             :isGoodWithFood :Dessert ,
+                                             :aperitif ;
+                             :hasAlcoholpercentage 5.5 ;
+                             :hasColor "Klar, lys rosa."^^xsd:string ;
+                             :hasName "Doc`s Raspberry Hard Apple Cider"^^xsd:string ;
+                             :hasPackaging "Glass"^^xsd:string ;
+                             :hasPrice 3.6 ,
+                                       97.10 ;
+                             :hasProductnumber 2557701 ;
+                             :hasRawmaterial "Epler, bringebær"^^xsd:string ;
+                             :hasSmell "Friske og syrlige bringebær."^^xsd:string ;
+                             :hasTaste "Balansert søt og syrlig. Eple og bringebær."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#DomMarcMoreyetFilsBourgogne2016
+:DomMarcMoreyetFilsBourgogne2016 rdf:type owl:NamedIndividual ,
+                                          :DomMarcMoreyeetFlis ;
+                                 :fromCountry :France ;
+                                 :fromDistrict :Bourgogne ,
+                                               :Margaux ;
+                                 :hasFreshnessCharacteristic :VeryFresh ;
+                                 :hasFullnessCharacteristic :GoodFullness ;
+                                 :hasSweetnessCharacteristic :Dry ;
+                                 :hasTasteAndAroma :JuicyAndFresh ;
+                                 :hasWineType :White ;
+                                 :isGoodWithFood :Cheese ,
+                                                 :Fish ,
+                                                 :ShellFish ;
+                                 :hasAlcoholpercentage 13 ;
+                                 :hasColor "Blekgul."^^xsd:string ;
+                                 :hasFullness 10 ,
+                                              9 ;
+                                 :hasName "Dom. Marc Morey et Fils Bourgogne 2016"^^xsd:string ;
+                                 :hasPackaging "glass"^^xsd:string ;
+                                 :hasPrice 349.90 ;
+                                 :hasProductnumber 1249901 ;
+                                 :hasRawmaterial "Chardonnay 100%"^^xsd:string ;
+                                 :hasSmell "Hvit fersken, modne frukter og mineraler."^^xsd:string ;
+                                 :hasSweetness 1 ;
+                                 :hasTaste "Hvit fersken, modne frukter og mineraler."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#DomSeguinManuel
+:DomSeguinManuel rdf:type owl:NamedIndividual ,
+                          :Producer ;
+                 :hasName "Dom Seguin Manuel"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Dry
+:Dry rdf:type owl:NamedIndividual ,
+              :Sweetness .
+
+
+###  http://www.semanticweb.org/116assignment#England
+:England rdf:type owl:NamedIndividual ,
+                  :Country ;
+         :hasName "England"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#ExtraBitter
+:ExtraBitter rdf:type owl:NamedIndividual ,
+                      :Bitterness .
+
+
+###  http://www.semanticweb.org/116assignment#FirmAndFruity
+:FirmAndFruity rdf:type owl:NamedIndividual ,
+                        :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#Fish
+:Fish rdf:type owl:NamedIndividual ,
+               :Seafood ;
+      :hasName "Fisk"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#France
+:France rdf:type owl:NamedIndividual ,
+                 :Country ;
+        :hasDistrict :Bordeaux ,
+                     :Bourgogne ,
+                     :Champagne ,
+                     :Margaux ;
+        :hasName "Frankrike"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Fresh
+:Fresh rdf:type owl:NamedIndividual ,
+                :Freshness .
+
+
+###  http://www.semanticweb.org/116assignment#FreshAndFruity
+:FreshAndFruity rdf:type owl:NamedIndividual ,
+                         :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#Fruit
+:Fruit rdf:type owl:NamedIndividual ,
+                :WineType ;
+       :hasName "Fruktvin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Fruity
+:Fruity rdf:type owl:NamedIndividual ,
+                 :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#Full
+:Full rdf:type owl:NamedIndividual ,
+               :Fullness .
+
+
+###  http://www.semanticweb.org/116assignment#FullAndJuicy
+:FullAndJuicy rdf:type owl:NamedIndividual ,
+                       :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#GammelDanskBitterDram
+:GammelDanskBitterDram rdf:type owl:NamedIndividual ,
+                                :GammelDansk ;
+                       :fromCountry :Denmark ;
+                       :hasLiquorType :Bitter ;
+                       :hasProducer :Arcus ;
+                       :hasAlcoholpercentage 38 ;
+                       :hasColor "Middels dyp rødbrun."^^xsd:string ;
+                       :hasName "Gammel Dansk Bitter Dram" ;
+                       :hasPackaging "Glass"^^xsd:string ;
+                       :hasPrice 554.90 ;
+                       :hasProductnumber 19702 ;
+                       :hasRawmaterial "Krydder, urter"^^xsd:string ;
+                       :hasSmell "Urtepreget aroma med innslag av lakris, mynte, sitrus og blomst."^^xsd:string ;
+                       :hasTaste "Bitter med middels fylde, ørlite sødme og markant bitter og krydret ettersmak."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Gin
+:Gin rdf:type owl:NamedIndividual ,
+              :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#GoodBitterness
+:GoodBitterness rdf:type owl:NamedIndividual ,
+                         :Bitterness .
+
+
+###  http://www.semanticweb.org/116assignment#GoodFreshness
+:GoodFreshness rdf:type owl:NamedIndividual ,
+                        :Freshness .
+
+
+###  http://www.semanticweb.org/116assignment#GoodFullness
+:GoodFullness rdf:type owl:NamedIndividual ,
+                       :Fullness .
+
+
+###  http://www.semanticweb.org/116assignment#GoodTanninContent
+:GoodTanninContent rdf:type owl:NamedIndividual ,
+                            :Tannin .
+
+
+###  http://www.semanticweb.org/116assignment#GruppoCasaleoneVini
+:GruppoCasaleoneVini rdf:type owl:NamedIndividual ,
+                              :Producer ;
+                     :hasName "Gruppo Casaleone Vini"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#HPBulmer
+:HPBulmer rdf:type owl:NamedIndividual ,
+                   :Producer ;
+          :hasName "HP Bulmer"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#HardangerSaftogCiderFabrikk
+:HardangerSaftogCiderFabrikk rdf:type owl:NamedIndividual ,
+                                      :Producer ;
+                             :hasName "Hardanger Saft og Cider Fabrikk"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#HardangerSiderTradisjonell2018
+:HardangerSiderTradisjonell2018 rdf:type owl:NamedIndividual ,
+                                         :HardangerCider ;
+                                :fromCountry :Norway ;
+                                :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Hordaland> ;
+                                :hasFreshnessCharacteristic :GoodFreshness ;
+                                :hasFullnessCharacteristic :MediumFullness ;
+                                :hasProducer :HardangerSaftogCiderFabrikk ;
+                                :hasSweetnessCharacteristic :LittlebitSweet ;
+                                :isGoodWithFood :Dessert ,
+                                                :Pork ,
+                                                :Vegetables ;
+                                :hasAcid 6.3 ;
+                                :hasAlcoholpercentage 8 ;
+                                :hasColor "Middels dyp gyllengul."^^xsd:string ;
+                                :hasFreshness 8 ;
+                                :hasFullness 6 ;
+                                :hasName "Hardanger Sider Tradisjonell 2018"^^xsd:string ;
+                                :hasPackaging "Glass"^^xsd:string ;
+                                :hasPrice 152.70 ;
+                                :hasProductnumber 4428201 ;
+                                :hasRawmaterial "Epler (Gravenstein, Summerred, Aroma)"^^xsd:string ;
+                                :hasSmell "Aroma preget av modent eple, streif av blomster, pære og sitrus."^^xsd:string ;
+                                :hasSugar 20.0 ;
+                                :hasSweetness 4 ;
+                                :hasTaste "Ung og fruktig, preg av eple og blomst, hint av sitrus og urter."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#HennesyXO
+:HennesyXO rdf:type owl:NamedIndividual ,
+                    :Hennesy ;
+           :fromCountry :France ;
+           :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#CognacTradisjonell> ;
+           :hasLiquorType :Cognac ;
+           :hasProducer <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Hennesy> ;
+           :hasAlcoholpercentage 40 ;
+           :hasColor "Mørk gyllen."^^xsd:string ;
+           :hasName "Hennesy X.O"^^xsd:string ;
+           :hasPackaging "Glass"^^xsd:string ;
+           :hasPrice 1489.90 ;
+           :hasProductnumber 6901 ;
+           :hasRawmaterial "Ugni Blanc 100%"^^xsd:string ;
+           :hasSmell "Krydret med hint av sjokolade."^^xsd:string ;
+           :hasSugar 10.1 ;
+           :hasTaste "Søt med hint av appelsin skall og aprikos."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#HighTanninContent
+:HighTanninContent rdf:type owl:NamedIndividual ,
+                            :Tannin .
+
+
+###  http://www.semanticweb.org/116assignment#IndiaPaleAle
+:IndiaPaleAle rdf:type owl:NamedIndividual ,
+                       :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Ireland
+:Ireland rdf:type owl:NamedIndividual ,
+                  :Country ;
+         :hasName "Irland"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Italy
+:Italy rdf:type owl:NamedIndividual ,
+                :Country ;
+       :hasDistrict :Piemonte ,
+                    :Prosecco ;
+       :hasName "Italia"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#JackDanielsTenessee
+:JackDanielsTenessee rdf:type owl:NamedIndividual ,
+                              :JackDaniels ;
+                     :fromCountry :USA ;
+                     :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Tenessee> ;
+                     :hasLiquorType :Whisky ;
+                     :hasProducer :Brown-Forman ;
+                     :hasColor "Dyp gyllen."^^xsd:string ;
+                     :hasName "Jack Daniels Tenesee"^^xsd:string ;
+                     :hasPackaging "Glass"^^xsd:string ;
+                     :hasPrice 399.90 ;
+                     :hasProductnumber 14607 ;
+                     :hasRawmaterial "Mais, rug, bygg"^^xsd:string ;
+                     :hasSmell "Aroma med tydelig preg av brente fat, kokos, vanilje og litt lakk."^^xsd:string ;
+                     :hasTaste "God fylde og preg av brente fat, vanilje og kokos."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Jameson
+:Jameson rdf:type owl:NamedIndividual ,
+                  :Producer ;
+         :hasName "Jameson"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Jameson_Caskmates_IPA_Edition
+:Jameson_Caskmates_IPA_Edition rdf:type owl:NamedIndividual ,
+                                        :Jameson ;
+                               :fromCountry :Ireland ;
+                               :hasLiquorType :Whisky ;
+                               :hasProducer :Jameson ;
+                               :hasAlcoholpercentage 40 ;
+                               :hasColor "Gyllen."^^xsd:string ;
+                               :hasName "Jameson Caskmates IPA Edition"^^xsd:string ;
+                               :hasPackaging "Glass"^^xsd:string ;
+                               :hasPrice 419.90 ;
+                               :hasProductnumber 10766601 ;
+                               :hasRawmaterial "Korn"^^xsd:string ;
+                               :hasSmell "Blomster, urter og grapefrukt. Hint av nøtter."^^xsd:string ;
+                               :hasSugar 3 ;
+                               :hasTaste "Lett sitrus preg med søte urter og krydder."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Jameson_Crested
+:Jameson_Crested rdf:type owl:NamedIndividual ,
+                          :Jameson ;
+                 :fromCountry :Ireland ;
+                 :hasLiquorType :Whisky ;
+                 :hasProducer :Jameson ;
+                 :hasAlcoholpercentage 40 ;
+                 :hasColor "Middels dyp gyllenbrun."^^xsd:string ;
+                 :hasName "Jameson Crested"^^xsd:string ;
+                 :hasPackaging "Glass"^^xsd:string ;
+                 :hasPrice 439.90 ;
+                 :hasProductnumber 7778301 ;
+                 :hasRawmaterial "Korn"^^xsd:string ;
+                 :hasSmell "Aroma preget av lyst malt og korn, innslag av urter, blomst og pære."^^xsd:string ;
+                 :hasSugar 3 ;
+                 :hasTaste "Whiskey med middels fylde og balansert preg av lyst malt, blomst og pære."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Japan
+:Japan rdf:type owl:NamedIndividual ,
+                :Country ;
+       :hasName "Japan"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#JuicyAndFresh
+:JuicyAndFresh rdf:type owl:NamedIndividual ,
+                        :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#Klosterstil
+:Klosterstil rdf:type owl:NamedIndividual ,
+                      :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#LaCantinaDelle7DonnePiemonteBarbera
+:LaCantinaDelle7DonnePiemonteBarbera rdf:type owl:NamedIndividual ,
+                                              :LaCantinaDelle7 ;
+                                     :fromCountry :Italy ;
+                                     :fromDistrict :Piemonte ;
+                                     :hasProducer :GruppoCasaleoneVini ;
+                                     :hasTasteAndAroma :FreshAndFruity ;
+                                     :hasWineType :Red ;
+                                     :isGoodWithFood :Beef ,
+                                                     :Cheese ,
+                                                     :Mutton ;
+                                     :hasAcid 5.3 ;
+                                     :hasAlcoholpercentage 12.5 ;
+                                     :hasColor "Dyp rød."^^xsd:string ;
+                                     :hasFreshness 8 ;
+                                     :hasFullness 9 ;
+                                     :hasName "La Cantina Delle 7 Donne Piemonte Barbera"^^xsd:string ;
+                                     :hasPackaging "Glass"^^xsd:string ;
+                                     :hasPrice 124.90 ;
+                                     :hasProductnumber 10988601 ;
+                                     :hasRawmaterial "Barbera 100%"^^xsd:string ;
+                                     :hasSmell "Aroma av røde bær og urter."^^xsd:string ;
+                                     :hasSugar 7.5 ;
+                                     :hasTannin 9 ;
+                                     :hasTaste "Ren og saftig, preg av røde bær og urter, fin friskhet i ettersmaken."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#LaSirenedeGiscours2012
+:LaSirenedeGiscours2012 rdf:type owl:NamedIndividual ,
+                                 :LaSirenedeGiscours ;
+                        :fromCountry :France ;
+                        :fromDistrict :Bordeaux ;
+                        :hasFreshnessCharacteristic :GoodFreshness ;
+                        :hasFullnessCharacteristic :GoodFullness ;
+                        :hasProducer :ChGiscours ;
+                        :hasTanninCharacteristic :GoodTanninContent ;
+                        :hasTasteAndAroma :DevelopedAndNuanced ;
+                        :hasWineType :Red ;
+                        :isGoodWithFood :Lamb ,
+                                        :WildGameMeat ;
+                        :hasAcid 5.2 ;
+                        :hasAlcoholpercentage 12 ;
+                        :hasColor "Mørk rød."^^xsd:string ;
+                        :hasFreshness 7 ;
+                        :hasFullness 8 ;
+                        :hasName "La Sirene de Giscours 2012"^^xsd:string ;
+                        :hasPackaging "Glass"^^xsd:string ;
+                        :hasPrice 425.70 ;
+                        :hasProductnumber 2870101 ;
+                        :hasSmell "Mørke bær og frukter med hint av vanilje."^^xsd:string ;
+                        :hasTannin 7 ;
+                        :hasTaste "Mørke, runde frukter. Middels fylde med runde tanniner. God lengde."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Lamb
+:Lamb rdf:type owl:NamedIndividual ,
+               :RedMeat ;
+      :hasName "Lam"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#LefebvreChampagneCuvéeReserveBrut
+:LefebvreChampagneCuvéeReserveBrut rdf:type owl:NamedIndividual ,
+                                            :Lefebvre ;
+                                   :fromCountry :France ;
+                                   :fromDistrict :Champagne ;
+                                   :hasFreshnessCharacteristic :VeryFresh ;
+                                   :hasFullnessCharacteristic :GoodFullness ;
+                                   :hasProducer :ChampagneLefebre ;
+                                   :hasSweetnessCharacteristic :Dry ;
+                                   :hasWineType :Sparkling ;
+                                   :isGoodWithFood :Fish ,
+                                                   :ShellFish ,
+                                                   :aperitif ;
+                                   :hasAcid 5.1 ;
+                                   :hasAlcoholpercentage 12 ;
+                                   :hasColor "Lys gul med noe grønnskjær."^^xsd:string ;
+                                   :hasFreshness 11 ;
+                                   :hasFullness 7 ;
+                                   :hasName "Lefebvre Champagne Cuvée Reserve Brut"^^xsd:string ;
+                                   :hasPackaging "Glass"^^xsd:string ;
+                                   :hasPrice 299.90 ;
+                                   :hasProductnumber 8297501 ;
+                                   :hasRawmaterial "Pinot Noir 50%, Pinot Meunier 30%, Chardonnay 20%"^^xsd:string ;
+                                   :hasSmell "Frisk, gul frukt, røde bær, fint autolysepreg."^^xsd:string ;
+                                   :hasSugar 10 ;
+                                   :hasSweetness 2 ;
+                                   :hasTaste "Fin mousse, frisk frukt, mineraler og lang avslutning."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Light
+:Light rdf:type owl:NamedIndividual ,
+                :Fullness .
+
+
+###  http://www.semanticweb.org/116assignment#LightAle
+:LightAle rdf:type owl:NamedIndividual ,
+                   :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#LightAndFresh
+:LightAndFresh rdf:type owl:NamedIndividual ,
+                        :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#LightLager
+:LightLager rdf:type owl:NamedIndividual ,
+                     :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#LightMeat
+:LightMeat rdf:type owl:NamedIndividual ,
+                    :Fowl ;
+           :hasName "Lyst Kjøtt"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#LittleBitterness
+:LittleBitterness rdf:type owl:NamedIndividual ,
+                           :Bitterness .
+
+
+###  http://www.semanticweb.org/116assignment#LittleSweetness
+:LittleSweetness rdf:type owl:NamedIndividual ,
+                          :Sweetness .
+
+
+###  http://www.semanticweb.org/116assignment#LittleTanninContent
+:LittleTanninContent rdf:type owl:NamedIndividual ,
+                              :Tannin .
+
+
+###  http://www.semanticweb.org/116assignment#LittlebitSweet
+:LittlebitSweet rdf:type owl:NamedIndividual ,
+                         :Sweetness .
+
+
+###  http://www.semanticweb.org/116assignment#LowFreshness
+:LowFreshness rdf:type owl:NamedIndividual ,
+                       :Freshness .
+
+
+###  http://www.semanticweb.org/116assignment#Margaux
+:Margaux rdf:type owl:NamedIndividual ,
+                  :District ;
+         :hasName "Margaux"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#MediumBitterness
+:MediumBitterness rdf:type owl:NamedIndividual ,
+                           :Bitterness .
+
+
+###  http://www.semanticweb.org/116assignment#MediumFreshness
+:MediumFreshness rdf:type owl:NamedIndividual ,
+                          :Freshness .
+
+
+###  http://www.semanticweb.org/116assignment#MediumFullness
+:MediumFullness rdf:type owl:NamedIndividual ,
+                         :Fullness .
+
+
+###  http://www.semanticweb.org/116assignment#MediumSweetness
+:MediumSweetness rdf:type owl:NamedIndividual ,
+                          :Sweetness .
+
+
+###  http://www.semanticweb.org/116assignment#MediumTanninContent
+:MediumTanninContent rdf:type owl:NamedIndividual ,
+                              :Tannin .
+
+
+###  http://www.semanticweb.org/116assignment#MutamukaSake
+:MutamukaSake rdf:type owl:NamedIndividual ,
+                       :Mutemuka ;
+              :fromCountry :Japan ;
+              :hasBitternessCharacteristic :MediumBitterness ;
+              :hasFreshnessCharacteristic :GoodFreshness ;
+              :hasFullnessCharacteristic :GoodFullness ;
+              :isGoodWithFood :Dessert ,
+                              :Fish ;
+              :hasAlcoholpercentage 18 ;
+              :hasBitterness 6 ;
+              :hasColor "Klar oransje."^^xsd:string ;
+              :hasFreshness 9 ;
+              :hasFullness 9 ;
+              :hasName "Mutamuka Sake"^^xsd:string ;
+              :hasPackaging "Glass"^^xsd:string ;
+              :hasPrice 330.00 ;
+              :hasProductnumber 5329801 ;
+              :hasRawmaterial "Vann, ris"^^xsd:string ;
+              :hasSmell "Kjølig aromatisk med innslag av gule moreller."^^xsd:string ;
+              :hasTaste "Tørr, mineralsk og fruktig smak."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Mutton
+:Mutton rdf:type owl:NamedIndividual ,
+                 :RedMeat ;
+        :hasName "Får"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#NonAlcoholic
+:NonAlcoholic rdf:type owl:NamedIndividual ,
+                       :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Norway
+:Norway rdf:type owl:NamedIndividual ,
+                 :Country ;
+        :hasName "Norge"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Nøisom
+:Nøisom rdf:type owl:NamedIndividual ,
+                 :Producer ;
+        :hasName "Nøisom"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#NøisomBrutIPA
+:NøisomBrutIPA rdf:type owl:NamedIndividual ,
+                        :Nøisom ;
+               :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Østfold> ;
+               :hasBeerType :IndiaPaleAle ;
+               :hasBitternessCharacteristic :LittleBitterness ;
+               :hasFreshnessCharacteristic :Light ;
+               :hasFullnessCharacteristic :GoodFullness ;
+               :hasProducer :Nøisom ;
+               :isGoodWithFood :Fish ,
+                               :LightMeat ,
+                               :aperitif ;
+               :hasAlcoholpercentage 7.8 ;
+               :hasBitterness 4 ;
+               :hasColor "Strågul"^^xsd:string ;
+               :hasFreshness 9 ;
+               :hasFullness 5 ;
+               :hasName "Nøisom Brut IPA"^^xsd:string ;
+               :hasPackaging "Glass"^^xsd:string ;
+               :hasPrice 69.19 ;
+               :hasProductnumber 11091602 ;
+               :hasRawmaterial "Vann, malt (bygg), humle, gjær"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#PaleAle
+:PaleAle rdf:type owl:NamedIndividual ,
+                  :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Piemonte
+:Piemonte rdf:type owl:NamedIndividual ,
+                   :District ;
+          :hasName "Piemonte"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#PoppelsAmericanPaleAle
+:PoppelsAmericanPaleAle rdf:type owl:NamedIndividual ,
+                                 :Poppels ;
+                        :fromCountry :Sweden ;
+                        :isGoodWithFood :Beef ,
+                                        :LightMeat ,
+                                        :aperitif ;
+                        :hasAlcoholpercentage 5.4 ;
+                        :hasBitterness 6 ;
+                        :hasFreshness 9 ;
+                        :hasFullness 7 ;
+                        :hasName "Poppels American Pale Ale"^^xsd:string ;
+                        :hasPackaging "Glass, Miljøsmart"^^xsd:string ;
+                        :hasPrice 49.90 ;
+                        :hasProductnumber 3908502 ;
+                        :hasRawmaterial "Vann, malt, humle, gjær"^^xsd:string ;
+                        :hasSmell "Aromatisk med hint av kjeks og malt, sitrus, tropisk passionsfrukt, høy og gress."^^xsd:string ;
+                        :hasTaste "Lett ristet malt sødme sammen med sitrus. Middels fylde. Balansert og lang."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#PoppelsBryggeri
+:PoppelsBryggeri rdf:type owl:NamedIndividual ,
+                          :Producer ;
+                 :hasName "Poppels Bryggeri"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Pork
+:Pork rdf:type owl:NamedIndividual ,
+               :NonReadMeat ;
+      :hasName "Svin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#PorterAndStout
+:PorterAndStout rdf:type owl:NamedIndividual ,
+                         :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Portugal
+:Portugal rdf:type owl:NamedIndividual ,
+                   :Country ;
+          :hasName "Portugal"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Prosecco
+:Prosecco rdf:type owl:NamedIndividual ,
+                   :District ;
+          :hasName "Prosecco"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Red
+:Red rdf:type owl:NamedIndividual ,
+              :WineType ;
+     :hasName "Rødvin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Ringnes
+:Ringnes rdf:type owl:NamedIndividual ,
+                  :Producer ;
+         :hasName "Ringnes"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#RingnesExtraGold
+:RingnesExtraGold rdf:type owl:NamedIndividual ,
+                           :Ringnes ;
+                  :fromCountry :Norway ;
+                  :hasBeerType :LightLager ;
+                  :hasBitternessCharacteristic :MediumBitterness ;
+                  :hasFreshnessCharacteristic :GoodFreshness ;
+                  :hasFullnessCharacteristic :GoodFullness ;
+                  :hasAlcoholpercentage 6.3 ;
+                  :hasBitterness 6 ;
+                  :hasFreshness 7 ;
+                  :hasFullness 7 ;
+                  :hasName "Ringnes Extra Gold"^^xsd:string ;
+                  :hasPackaging "Emballasje med pant, Miljøsmart"^^xsd:string ;
+                  :hasPrice 35.90 ;
+                  :hasProductnumber 1224802 ;
+                  :hasRawmaterial "Vann, malt, humle, gjær"^^xsd:string ;
+                  :hasSmell "Aroma med fint preg av gyllent malt, innslag av tørket frukt og humle."^^xsd:string ;
+                  :hasTaste "Kremet, maltpreget og fint balansert, ettersmak med god lengde og streif av bittert."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Rioja
+:Rioja rdf:type owl:NamedIndividual ,
+                :District ;
+       :hasName "Rioja"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#RiojaVega
+:RiojaVega rdf:type owl:NamedIndividual ,
+                    :Producer ;
+           :hasName "Rioja Vega"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#RiojaVegaReserva2013
+:RiojaVegaReserva2013 rdf:type owl:NamedIndividual ,
+                               :Rioja ;
+                      :fromCountry :Spain ;
+                      :fromDistrict :Rioja ;
+                      :hasProducer :RiojaVega ;
+                      :hasTasteAndAroma :DevelopedAndNuanced ;
+                      :hasWineType :Red ;
+                      :isGoodWithFood :Beef ,
+                                      :Mutton ,
+                                      :SmallGameMeat ;
+                      :hasAcid 5.3 ;
+                      :hasAlcoholpercentage 14 ;
+                      :hasColor "Kirsebærrød."^^xsd:string ;
+                      :hasFreshness 7 ;
+                      :hasFullness 7 ;
+                      :hasName "Rioja Vega Reserva 2013"^^xsd:string ;
+                      :hasPackaging "Glass"^^xsd:string ;
+                      :hasPrice 199.90 ;
+                      :hasProductnumber 4360101 ;
+                      :hasRawmaterial "Graciano (Bovale) 10%, Tempranillo (Tinto del Pais) 85%, Mazuelo 5%"^^xsd:string ;
+                      :hasSmell "Intens frukt, karamell og vanilje."^^xsd:string ;
+                      :hasTannin 6 ;
+                      :hasTaste "Frukt med litt varm avslutning og innslag av fat."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#RivaLeonePiemonteRosso2016
+:RivaLeonePiemonteRosso2016 rdf:type owl:NamedIndividual ,
+                                     :RivaLeone ;
+                            :fromCountry :Italy ;
+                            :fromDistrict :Piemonte ;
+                            :hasTasteAndAroma :FreshAndFruity ;
+                            :hasWineType :Red ;
+                            :isGoodWithFood :LightMeat ,
+                                            :Pork ,
+                                            :Vegetables ;
+                            :hasAlcoholpercentage 13 ;
+                            :hasColor "Dyp blårød."^^xsd:string ;
+                            :hasFreshness 8 ;
+                            :hasFullness 8 ;
+                            :hasName "Riva Leone Piemonte Rosso 2016"^^xsd:string ;
+                            :hasPackaging "Glass"^^xsd:string ;
+                            :hasPrice 129.90 ;
+                            :hasProductnumber 8172501 ;
+                            :hasRawmaterial "Barbera 80%, Dolcetto 20%"^^xsd:string ;
+                            :hasSmell "Fruktig aroma preget av mørke bær, litt urter og blomst."^^xsd:string ;
+                            :hasSugar 5.7 ;
+                            :hasTannin 8 ;
+                            :hasTaste "Ung og saftig, preg av mørke bær og urter, litt tørr og fast ettersmak."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Rose
+:Rose rdf:type owl:NamedIndividual ,
+               :WineType ;
+      :hasName "Rosevin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Rum
+:Rum rdf:type owl:NamedIndividual ,
+              :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#SaisonFarmhouseAle
+:SaisonFarmhouseAle rdf:type owl:NamedIndividual ,
+                             :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#ScotchAle
+:ScotchAle rdf:type owl:NamedIndividual ,
+                    :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#SeguinManuelBourgogneChardonnay2015
+:SeguinManuelBourgogneChardonnay2015 rdf:type owl:NamedIndividual ,
+                                              :Seguin-Manuel ;
+                                     :fromCountry :France ;
+                                     :fromDistrict :Bourgogne ;
+                                     :hasTasteAndAroma :LightAndFresh ;
+                                     :hasWineType :White ;
+                                     :isGoodWithFood :Fish ,
+                                                     :ShellFish ,
+                                                     :aperitif ;
+                                     :hasAcid 4.1 ;
+                                     :hasAlcoholpercentage 12.5 ;
+                                     :hasColor "Lys strågul."^^xsd:string ;
+                                     :hasFreshness 6 ;
+                                     :hasFullness 8 ;
+                                     :hasName "Seguin-Manuel Bourgogne Chardonnay 2015"^^xsd:string ;
+                                     :hasPackaging "Glass"^^xsd:string ;
+                                     :hasPrice 324.60 ;
+                                     :hasProductnumber 6900401 ;
+                                     :hasRawmaterial "Chardonnay 100%"^^xsd:string ;
+                                     :hasSmell "Komplekse aromaer av gule stenfrukter, florale toner og fat."^^xsd:string ;
+                                     :hasSweetness 1 ;
+                                     :hasTaste "Middels fyldig, balansert med god mineralitet."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#SeguinManuelBourgognePinotNoir2015
+:SeguinManuelBourgognePinotNoir2015 rdf:type owl:NamedIndividual ,
+                                             :Seguin-Manuel ;
+                                    :fromCountry :France ;
+                                    :fromDistrict :Bourgogne ;
+                                    :hasFreshnessCharacteristic :MediumFreshness ;
+                                    :hasFullnessCharacteristic :MediumFullness ;
+                                    :hasProducer :DomSeguinManuel ;
+                                    :hasTanninCharacteristic :LittleTanninContent ;
+                                    :hasTasteAndAroma :FreshAndFruity ;
+                                    :hasWineType :Red ;
+                                    :isGoodWithFood :Lamb ,
+                                                    :LightMeat ,
+                                                    :Mutton ;
+                                    :hasAlcoholpercentage 12.5 ;
+                                    :hasFreshness 6 ;
+                                    :hasFullness 5 ;
+                                    :hasName "Seguin-Manuel Bourgogne Pinot Noir 2015"^^xsd:string ;
+                                    :hasPackaging "Glass"^^xsd:string ;
+                                    :hasPrice 330.40 ;
+                                    :hasProductnumber 1528301 ;
+                                    :hasRawmaterial "Pinot Noir 100%"^^xsd:string ;
+                                    :hasSmell "Røde bær og florale toner."^^xsd:string ;
+                                    :hasTannin 4 ;
+                                    :hasTaste "Fruktig og balansert med godt integrert eikepreg."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#ShellFish
+:ShellFish rdf:type owl:NamedIndividual ,
+                    :Seafood ;
+           :hasName "Skalldyr"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#SmallGameMeat
+:SmallGameMeat rdf:type owl:NamedIndividual ,
+                        :RedMeat ;
+               :hasName "Småvilt"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#SourAle
+:SourAle rdf:type owl:NamedIndividual ,
+                  :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Spain
+:Spain rdf:type owl:NamedIndividual ,
+                :Country ;
+       :hasDistrict :Rioja ;
+       :hasName "Spania"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Sparkling
+:Sparkling rdf:type owl:NamedIndividual ,
+                    :WineType ;
+           :hasName "Musserende vin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Special
+:Special rdf:type owl:NamedIndividual ,
+                  :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#SpicyAndSweet
+:SpicyAndSweet rdf:type owl:NamedIndividual ,
+                        :WineTasteAndAroma .
+
+
+###  http://www.semanticweb.org/116assignment#Strong
+:Strong rdf:type owl:NamedIndividual ,
+                 :WineType ;
+        :hasName "Sterkvin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#StrongbowOriginal
+:StrongbowOriginal rdf:type owl:NamedIndividual ,
+                            :StrongBow ;
+                   :fromCountry :England ;
+                   :hasFreshnessCharacteristic :GoodFreshness ;
+                   :hasFullnessCharacteristic :MediumFullness ;
+                   :hasProducer :HPBulmer ;
+                   :hasSweetnessCharacteristic :Dry ;
+                   :isGoodWithFood :Dessert ;
+                   :hasAlcoholpercentage 5 ;
+                   :hasColor "Middels dyp gyllengul."^^xsd:string ;
+                   :hasFreshness 8 ;
+                   :hasFullness 2 ,
+                                6 ;
+                   :hasName "Strongbow Original"^^xsd:string ;
+                   :hasPackaging "Glass"^^xsd:string ;
+                   :hasPrice 33.90 ;
+                   :hasProductnumber 1231502 ;
+                   :hasRawmaterial "Epler"^^xsd:string ;
+                   :hasSmell "Aroma preget av modne epler, litt sitrus og urter."^^xsd:string ;
+                   :hasSugar 15 ;
+                   :hasTaste "Ren og fruktig, preg av eple, sitrus og litt urter, tørr og ørlite bitter ettersmak."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Sweden
+:Sweden rdf:type owl:NamedIndividual ,
+                 :Country ;
+        :hasName "Sverige"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Sweet
+:Sweet rdf:type owl:NamedIndividual ,
+                :Sweetness .
+
+
+###  http://www.semanticweb.org/116assignment#TeradaHonke
+:TeradaHonke rdf:type owl:NamedIndividual ,
+                      :Producer ;
+             :hasName "Terada Honke"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#TeradaHonkeKatori90Sake
+:TeradaHonkeKatori90Sake rdf:type owl:NamedIndividual ,
+                                  :TeradaHonke ;
+                         :fromCountry :Japan ;
+                         :hasBitternessCharacteristic :VeryLittleBitterness ;
+                         :hasFreshnessCharacteristic :GoodFreshness ;
+                         :hasFullnessCharacteristic :GoodFullness ;
+                         :hasProducer :TeradaHonke ;
+                         :isGoodWithFood :Fish ,
+                                         :LightMeat ,
+                                         :aperitif ;
+                         :hasBitterness 1 ;
+                         :hasColor "Klar"^^xsd:string ;
+                         :hasFreshness 9 ;
+                         :hasFullness 9 ;
+                         :hasName "Terada Honke Katori 90 Sake" ;
+                         :hasPackaging "Glass"^^xsd:string ;
+                         :hasPrice 355.00 ;
+                         :hasProductnumber 5329901 ;
+                         :hasRawmaterial "Vann, ris"^^xsd:string ;
+                         :hasSmell "Fruktig og aromatisk, rispreget."^^xsd:string ;
+                         :hasTaste "Fruktig, sødmefull, råvarepreget (ris)."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#USA
+:USA rdf:type owl:NamedIndividual ,
+              :Country ;
+     :hasDistrict :California ;
+     :hasName "USA"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#UlvikFruktogCiderHakastadsiderGravenstein2017
+:UlvikFruktogCiderHakastadsiderGravenstein2017 rdf:type owl:NamedIndividual ,
+                                                        :Ulvik ;
+                                               :fromCountry :Norway ;
+                                               :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Hordaland> ;
+                                               :hasProducer :UlvikFruktogCideri ;
+                                               :isGoodWithFood :Fish ,
+                                                               :ShellFish ,
+                                                               :aperitif ;
+                                               :hasAcid 7.5 ;
+                                               :hasAlcoholpercentage 7.5 ;
+                                               :hasFreshness 9 ;
+                                               :hasFullness 2 ,
+                                                            6 ;
+                                               :hasName "Ulvik Frukt og Cideri Hakastadsider Gravenstein 2017"^^xsd:string ;
+                                               :hasPackaging "Glass"^^xsd:string ;
+                                               :hasPrice 154.90 ;
+                                               :hasProductnumber 1654801 ;
+                                               :hasRawmaterial "Epler"^^xsd:string ;
+                                               :hasSmell "Aroma med fint preg av eple, svale urter og litt pære."^^xsd:string ;
+                                               :hasSugar 11 ;
+                                               :hasTaste "Ren, fint fokusert og perlende. Saftig preg av eple, sitrus og litt urter."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#UlvikFruktogCideri
+:UlvikFruktogCideri rdf:type owl:NamedIndividual ,
+                             :Producer ;
+                    :hasName "Ulvik Frukt og Cideri"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Veal
+:Veal rdf:type owl:NamedIndividual ,
+               :RedMeat ;
+      :hasName "Kalv"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Vegetables
+:Vegetables rdf:type owl:NamedIndividual ,
+                     :Vegetable ;
+            :hasName "Grønnsaker"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#VeryBitter
+:VeryBitter rdf:type owl:NamedIndividual ,
+                     :Bitterness .
+
+
+###  http://www.semanticweb.org/116assignment#VeryFresh
+:VeryFresh rdf:type owl:NamedIndividual ,
+                    :Freshness .
+
+
+###  http://www.semanticweb.org/116assignment#VeryFull
+:VeryFull rdf:type owl:NamedIndividual ,
+                   :Fullness .
+
+
+###  http://www.semanticweb.org/116assignment#VeryLight
+:VeryLight rdf:type owl:NamedIndividual ,
+                    :Fullness .
+
+
+###  http://www.semanticweb.org/116assignment#VeryLittleBitterness
+:VeryLittleBitterness rdf:type owl:NamedIndividual ,
+                               :Bitterness .
+
+
+###  http://www.semanticweb.org/116assignment#VeryLowFreshness
+:VeryLowFreshness rdf:type owl:NamedIndividual ,
+                           :Freshness .
+
+
+###  http://www.semanticweb.org/116assignment#VerySweet
+:VerySweet rdf:type owl:NamedIndividual ,
+                    :Sweetness .
+
+
+###  http://www.semanticweb.org/116assignment#VikingFjordVodka50
+:VikingFjordVodka50 rdf:type owl:NamedIndividual ,
+                             :VikingFjord ;
+                    :fromCountry :Norway ;
+                    :fromDistrict <http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Akershus> ;
+                    :hasLiquorType :Vodka ;
+                    :hasProducer :Arcus ;
+                    :hasAlcoholpercentage 50 ;
+                    :hasColor "Vannklar."^^xsd:string ;
+                    :hasName "Vikingfjord Vodka 50%"^^xsd:string ;
+                    :hasPackaging "Plast, Miljøsmart"^^xsd:string ;
+                    :hasPrice 319.90 ;
+                    :hasProductnumber 165902 ;
+                    :hasRawmaterial "Potetbrennevin, brevann fra Norge"^^xsd:string ;
+                    :hasSmell "Nøytral og ren aroma med hint av sitrus."^^xsd:string ;
+                    :hasTaste "Lett og nøytral vodka med antydning til sitrus."^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#Vodka
+:Vodka rdf:type owl:NamedIndividual ,
+                :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#WarwickValleyWineCoInc
+:WarwickValleyWineCoInc rdf:type owl:NamedIndividual ,
+                                 :Producer ;
+                        :hasName "Warwick Valley Wine Colnc"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#WheatAle
+:WheatAle rdf:type owl:NamedIndividual ,
+                   :BeerType .
+
+
+###  http://www.semanticweb.org/116assignment#Whisky
+:Whisky rdf:type owl:NamedIndividual ,
+                 :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#White
+:White rdf:type owl:NamedIndividual ,
+                :WineType ;
+       :hasName "hvitvin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#WildGameMeat
+:WildGameMeat rdf:type owl:NamedIndividual ,
+                       :RedMeat ;
+              :hasName "Storvilt"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#aperitif
+:aperitif rdf:type owl:NamedIndividual ,
+                   :Appertizer ;
+          :hasName "Aperitiff"^^xsd:string .
+
+
+###  http://www.semanticweb.org/116assignment#aquavit
+:aquavit rdf:type owl:NamedIndividual ,
+                  :LiquorType .
+
+
+###  http://www.semanticweb.org/116assignment#firm
+:firm rdf:type owl:NamedIndividual ,
+               :Tannin .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Akershus
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Akershus> rdf:type owl:NamedIndividual ,
+                                                                                  :District ;
+                                                                         :hasName "Akershus"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#CognacTradisjonell
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#CognacTradisjonell> rdf:type owl:NamedIndividual ,
+                                                                                            :District ;
+                                                                                   :hasName "Cognac Tradisjonell"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Hennesy
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Hennesy> rdf:type owl:NamedIndividual ,
+                                                                                 :Producer .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Hordaland
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Hordaland> rdf:type owl:NamedIndividual ,
+                                                                                   :District ;
+                                                                          :hasName "Hordaland"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#MacksØlbryggeri
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#MacksØlbryggeri> rdf:type owl:NamedIndividual ,
+                                                                                         :Producer ;
+                                                                                :hasName "Macks Ølbryggeri"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#RingnesPolarisRøykbokk
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#RingnesPolarisRøykbokk> rdf:type owl:NamedIndividual ,
+                                                                                                :Ringnes ;
+                                                                                       :fromCountry :Norway ;
+                                                                                       :hasBeerType :DarkLager ;
+                                                                                       :isGoodWithFood :Beef ,
+                                                                                                       :Cheese ,
+                                                                                                       :aperitif ;
+                                                                                       :hasAlcoholpercentage 7 ;
+                                                                                       :hasBitterness 5 ;
+                                                                                       :hasColor "Mørk brun-sort."^^xsd:string ;
+                                                                                       :hasFreshness 5 ;
+                                                                                       :hasFullness 7 ;
+                                                                                       :hasPackaging "Glass"^^xsd:string ;
+                                                                                       :hasProductnumber 2865702 ;
+                                                                                       :hasRawmaterial "Vann, malt (røkt bygg), humle, gjær"^^xsd:string ;
+                                                                                       :hasSmell "Fruktig med hint av karamell, toffee og lett røyk."^^xsd:string ;
+                                                                                       :hasTaste "Karamell og med lettrøkte noter. Mørkt, robust og smaksrikt."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Tenessee
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Tenessee> rdf:type owl:NamedIndividual ,
+                                                                                  :District ;
+                                                                         :hasName "Tenesse"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Troms
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Troms> rdf:type owl:NamedIndividual ,
+                                                                               :District ;
+                                                                      :hasName "Troms"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Østfold
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Østfold> rdf:type owl:NamedIndividual ,
+                                                                                 :District ;
+                                                                        :hasName "Østfold"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Red/amber
+<http://www.semanticweb.org/ole_k/ontologies/2019/8/116oppgave#Red/amber> rdf:type owl:NamedIndividual ,
+                                                                                   :BeerType .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://webprotege.stanford.edu/Vietti>
+                :Altareggia
+                :BreadandButter
+                :ClosduJaugeuyron
+                :DomMarcMoreyeetFlis
+                :LaCantinaDelle7
+                :LaSirenedeGiscours
+                :Lefebvre
+                :Rioja
+                :RivaLeone
+                :Seguin-Manuel
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Beer
+                :Cider
+                :Liquor
+                :Sake
+                :Wine
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Bitterness
+                :Freshness
+                :Fullness
+                :Sweetness
+                :Tannin
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Carlsberg
+                :LaTrappe
+                :Mack
+                :MahrsBrau
+                :Nøisom
+                :Poppels
+                :Ringnes
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Docs
+                :HardangerCider
+                :StrongBow
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DrinkDescriptor
+                :DrinkableThing
+                :EdibleThing
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :GammelDansk
+                :Hennesy
+                :JackDaniels
+                :Jameson
+                :KirowTikTak
+                :VikingFjord
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Mutemuka
+                :ShoChikuBai
+                :TeradaHonke
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :hasBitternessCharacteristic
+                :hasFreshnessCharacteristic
+                :hasFullnessCharacteristic
+                :hasSweetnessCharacteristic
+                :hasTanninCharacteristic
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
